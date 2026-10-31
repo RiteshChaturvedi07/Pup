@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PupStop } from '@/components/pup/PupStop';
 import { MAIN_TESTIMONIAL, POLAROIDS } from '@/data/families';
 
 export function HappyFamiliesScene() {
@@ -26,12 +27,20 @@ export function HappyFamiliesScene() {
           <span className="font-scrawl text-honey text-lg font-medium block mb-1">
             heartwarming moments 🌅
           </span>
-          <h2
-            id="dusk-title"
-            className="font-plush text-huge font-bold text-milk"
-          >
-            Happy families & puppies
-          </h2>
+          <div className="relative inline-block">
+            <h2
+              id="dusk-title"
+              className="font-plush text-huge font-bold text-milk"
+            >
+              Happy families & puppies
+            </h2>
+            <PupStop
+              id="dusk"
+              pose="sit"
+              facing="right"
+              className="tp-dusk__teddy absolute -bottom-2 -right-8"
+            />
+          </div>
           <p className="mt-3 text-milk/80 text-base md:text-lg leading-relaxed">
             We are truly honored to see our puppies become cherished members of loving families. These moments have been shared by our clients who welcomed a Teddy Pup into their homes and hearts.
           </p>
@@ -95,8 +104,19 @@ export function HappyFamiliesScene() {
           ))}
         </div>
 
+        {/* Polaroid wall mascot anchor */}
+        <div className="flex justify-center -mt-2 mb-8">
+          <PupStop
+            id="polaroids"
+            pose="sit"
+            facing="right"
+            act="wall"
+            className="tp-polaroids__teddy"
+          />
+        </div>
+
         {/* CTA to full happy families gallery */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <Link
             href="/happy-families"
             className="inline-flex h-12 items-center gap-2 rounded-full border-2 border-honey bg-honey/10 px-8 font-semibold text-honey transition-all hover:bg-honey hover:text-cocoa active:scale-95 shadow-sm"

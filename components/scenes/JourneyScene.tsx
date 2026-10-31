@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { PupStop } from '@/components/pup/PupStop';
 import { SITE_CONFIG } from '@/data/siteConfig';
 
 export function JourneyScene() {
@@ -38,16 +39,24 @@ export function JourneyScene() {
     >
       <div className="gutter mx-auto max-w-7xl">
         {/* Title */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16 relative">
           <span className="font-scrawl text-toffee text-lg font-medium block mb-1">
             concierge adoption ✨
           </span>
-          <h2
-            id="journey-title"
-            className="font-plush text-huge font-bold text-cocoa"
-          >
-            Your puppy journey
-          </h2>
+          <div className="relative inline-block">
+            <h2
+              id="journey-title"
+              className="font-plush text-huge font-bold text-cocoa"
+            >
+              Your puppy journey
+            </h2>
+            <PupStop
+              id="journey"
+              pose="sit"
+              facing="left"
+              className="tp-journey__teddy absolute -top-4 -right-12"
+            />
+          </div>
           <p className="mt-3 text-cocoa/80 text-base md:text-lg">
             A premium, step-by-step concierge experience. We make adoption simple, secure, and purely joyful.
           </p>
@@ -108,7 +117,14 @@ export function JourneyScene() {
           </div>
 
           {/* iPhone WhatsApp Mockup (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center relative">
+            <PupStop
+              id="chat"
+              pose="sit"
+              facing="right"
+              act="phone"
+              className="tp-chat__teddy"
+            />
             <div className="relative w-[300px] sm:w-[320px] rounded-[3rem] border-8 border-cocoa bg-[#0b141a] p-3 shadow-2xl">
               {/* Dynamic Island notch */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 h-4 w-24 rounded-full bg-cocoa z-30" />

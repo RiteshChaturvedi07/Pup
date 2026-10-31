@@ -1,5 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
+import { PupStop } from '@/components/pup/PupStop';
+import { BasketBack, BasketFront } from '@/components/svg/Basket';
 import { SITE_CONFIG } from '@/data/siteConfig';
 
 export function Footer() {
@@ -27,24 +28,19 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Basket SVG illustration with mascot inside */}
-          <div className="relative w-48 h-36 flex items-center justify-center">
-            {/* Basket SVG */}
-            <svg viewBox="0 0 300 240" className="w-full h-full" fill="none">
-              <ellipse cx="150" cy="180" rx="90" ry="35" fill="#f2be6b" stroke="#fffdf8" strokeWidth="4" />
-              <path d="M60 170 C60 210, 240 210, 240 170" stroke="#f2be6b" strokeWidth="8" strokeLinecap="round" />
-              {/* Sleeping cute puppy ears and face */}
-              <circle cx="150" cy="140" r="45" fill="#e4a352" stroke="#24130b" strokeWidth="3" />
-              <ellipse cx="120" cy="130" rx="14" ry="24" fill="#a24a1a" stroke="#24130b" strokeWidth="2.5" transform="rotate(-15 120 130)" />
-              <ellipse cx="180" cy="130" rx="14" ry="24" fill="#a24a1a" stroke="#24130b" strokeWidth="2.5" transform="rotate(15 180 130)" />
-              {/* Sleeping eyes */}
-              <path d="M136 142 Q 142 147 148 142" stroke="#24130b" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M152 142 Q 158 147 164 142" stroke="#24130b" strokeWidth="2.5" strokeLinecap="round" />
-              {/* Button nose */}
-              <ellipse cx="150" cy="150" rx="6" ry="4.5" fill="#24130b" />
-              {/* Zzz text */}
-              <text x="210" y="110" fill="#f2be6b" className="font-scrawl text-xl font-bold animate-pulse">Zzz</text>
-            </svg>
+          {/* Authentic Wicker Basket with sleeping puppy PupStop */}
+          <div className="relative w-56 h-44 flex items-center justify-center tp-basket">
+            <BasketBack className="absolute inset-0 w-full h-full z-[1]" />
+            <PupStop
+              id="footer"
+              pose="snug"
+              facing="right"
+              act="basket"
+              behind
+              lane
+              className="tp-basket__pup relative z-[10] w-full"
+            />
+            <BasketFront className="absolute inset-0 w-full h-full z-[25] pointer-events-none" />
           </div>
         </div>
 

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { HOME_FAQS } from '@/data/faqs';
-import { Mascot } from '@/components/mascot/Mascot';
+import { PupStop } from '@/components/pup/PupStop';
 
 export function QuestionsScene() {
   const [openId, setOpenId] = useState<string | null>(HOME_FAQS[0].id);
@@ -93,11 +93,12 @@ export function QuestionsScene() {
               <span className="font-plush text-4xl text-honey font-bold absolute -top-4 -right-2 animate-bounce">
                 ?
               </span>
-              <Mascot
-                pose="tilt"
+              <PupStop
+                id="night"
+                pose="sit"
                 facing="right"
-                size={150}
-                showBubble={false}
+                act="tilt"
+                className="tp-night__teddy"
               />
             </div>
           </div>

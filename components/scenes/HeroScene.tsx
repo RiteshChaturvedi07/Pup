@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG } from '@/data/siteConfig';
 import { PUPPIES } from '@/data/puppies';
-import { Mascot } from '@/components/mascot/Mascot';
+import { PupStop } from '@/components/pup/PupStop';
 
 export function HeroScene() {
   // Use first 6 puppies for the arch windows
@@ -125,14 +125,16 @@ export function HeroScene() {
             ))}
           </div>
 
-          {/* Central mascot playful greeting */}
-          <div className="hidden lg:flex justify-center -mt-8 relative z-20">
-            <Mascot
-              pose="sit"
+          {/* Central mascot anchor behind the quilt */}
+          <div className="flex justify-center -mt-8 relative z-20">
+            <PupStop
+              id="hero"
+              pose="peek"
               facing="right"
-              size={140}
-              showBubble={true}
-              bubbleText="Welcome! Meet our pups 🐶"
+              act="peekaboo"
+              behind
+              lane
+              className="tp-hero__teddy"
             />
           </div>
         </div>

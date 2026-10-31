@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PupStop } from '@/components/pup/PupStop';
 
 export function TwoWaysScene() {
   return (
@@ -18,23 +19,41 @@ export function TwoWaysScene() {
     >
       <div className="gutter mx-auto max-w-7xl">
         {/* Title */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16 relative">
           <span className="font-scrawl text-toffee text-lg font-medium block mb-1">
             choose your path 🌿
           </span>
-          <h2
-            id="paths-title"
-            className="font-plush text-huge font-bold text-cocoa"
-          >
-            Two ways to meet your puppy
-          </h2>
+          <div className="relative inline-block">
+            <h2
+              id="paths-title"
+              className="font-plush text-huge font-bold text-cocoa"
+            >
+              Two ways to meet your puppy
+            </h2>
+            <PupStop
+              id="paths"
+              pose="sit"
+              facing="right"
+              className="tp-paths__teddy absolute -bottom-3 -left-6"
+            />
+          </div>
           <p className="mt-3 text-cocoa/80 text-base md:text-lg">
             Whether you want to visit our Downtown Dubai showroom today or reserve a rare teacup puppy from Korea, we guide you every step.
           </p>
         </div>
 
-        {/* 2 Ways Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+        {/* 2 Ways Cards with Central Fork Anchor */}
+        <div className="relative">
+          <div className="flex justify-center -mb-6 relative z-10">
+            <PupStop
+              id="fork"
+              pose="sit"
+              facing="right"
+              act="signpost"
+              className="tp-fork__teddy"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
           {/* Way 1: Local Dubai Showroom */}
           <div className="relative flex flex-col justify-between rounded-3xl border-3 border-cocoa bg-milk/90 p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <div>
@@ -140,6 +159,7 @@ export function TwoWaysScene() {
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 }

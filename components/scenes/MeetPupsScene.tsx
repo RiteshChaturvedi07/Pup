@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PUPPIES } from '@/data/puppies';
+import { PupStop } from '@/components/pup/PupStop';
 
 export function MeetPupsScene() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -165,6 +166,18 @@ export function MeetPupsScene() {
               </span>
             </Link>
           </div>
+        </div>
+
+        {/* Floor with mascot anchor */}
+        <div className="relative mt-4">
+          <div aria-hidden="true" className="tp-meet__floor h-4 w-full bg-[#f2be6b]/20 border-t-2 border-[#2a170e]/20" />
+          <PupStop
+            id="meet"
+            pose="run"
+            facing="right"
+            act="treadmill"
+            className="tp-meet__teddy"
+          />
         </div>
       </div>
     </section>

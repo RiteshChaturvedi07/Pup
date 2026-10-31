@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { PupStop } from '@/components/pup/PupStop';
 import { SITE_CONFIG } from '@/data/siteConfig';
 
 export function ClosingCtaScene() {
@@ -59,12 +60,19 @@ export function ClosingCtaScene() {
           </Link>
         </div>
 
-        {/* Glowing doorway house graphic */}
-        <div className="relative mt-16 max-w-md mx-auto aspect-[16/9] flex items-end justify-center">
-          <div className="w-32 h-44 rounded-t-full border-4 border-honey bg-gradient-to-t from-honey to-honey/40 shadow-[0_0_50px_rgba(242,190,107,0.3)] flex items-end justify-center pb-2">
+        {/* Glowing doorway house graphic with mascot anchor */}
+        <div className="relative mt-16 max-w-md mx-auto flex flex-col items-center justify-end">
+          <div className="relative w-36 h-48 rounded-t-full border-4 border-honey bg-gradient-to-t from-honey/90 to-honey/30 shadow-[0_0_50px_rgba(242,190,107,0.3)] flex items-end justify-center pb-2">
             <span className="font-scrawl text-xs font-bold text-cocoa">
-              OPEN
+              welcome home
             </span>
+            <PupStop
+              id="house"
+              pose="bow"
+              facing="right"
+              act="house"
+              className="tp-house__teddy absolute bottom-1 -left-10"
+            />
           </div>
         </div>
       </div>

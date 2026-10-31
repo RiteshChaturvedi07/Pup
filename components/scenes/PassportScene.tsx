@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { PupStop } from '@/components/pup/PupStop';
 
 export function PassportScene() {
   const trustPoints = [
@@ -64,6 +65,13 @@ export function PassportScene() {
 
         {/* Passport Booklet Card */}
         <div className="max-w-5xl mx-auto rounded-[3rem] border-4 border-cocoa bg-[#fff9ef] p-6 sm:p-12 shadow-2xl relative">
+          <PupStop
+            id="passport"
+            pose="sit"
+            facing="right"
+            act="book"
+            className="tp-book__teddy"
+          />
           {/* Passport Header Banner */}
           <div className="flex flex-col sm:flex-row items-center justify-between pb-8 border-b-2 border-dashed border-cocoa/20 gap-4">
             <div className="flex items-center gap-3">

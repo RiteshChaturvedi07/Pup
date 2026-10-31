@@ -1,0 +1,983 @@
+[
+  {
+    "index": 1,
+    "id": "tp-curtain-scallop",
+    "className": "tp-curtain__edge tp-curtain__edge--top",
+    "viewBox": null,
+    "ariaLabel": null,
+    "category": "other",
+    "length": 593
+  },
+  {
+    "index": 2,
+    "id": null,
+    "className": "tp-curtain__print",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 892
+  },
+  {
+    "index": 3,
+    "id": null,
+    "className": "tp-curtain__print",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 892
+  },
+  {
+    "index": 4,
+    "id": null,
+    "className": "tp-curtain__print",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 891
+  },
+  {
+    "index": 5,
+    "id": null,
+    "className": "tp-curtain__print",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 892
+  },
+  {
+    "index": 6,
+    "id": null,
+    "className": "tp-curtain__print",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 892
+  },
+  {
+    "index": 7,
+    "id": null,
+    "className": "tp-runner ",
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 7020
+  },
+  {
+    "index": 8,
+    "id": null,
+    "className": "tp-curtain__edge tp-curtain__edge--bottom",
+    "viewBox": null,
+    "ariaLabel": null,
+    "category": "other",
+    "length": 183
+  },
+  {
+    "index": 9,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 10,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 870
+  },
+  {
+    "index": 11,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 870
+  },
+  {
+    "index": 12,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 870
+  },
+  {
+    "index": 13,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 870
+  },
+  {
+    "index": 14,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 15,
+    "id": null,
+    "className": "size-4",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 860
+  },
+  {
+    "index": 16,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 17,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 18,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 19,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 20,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 21,
+    "id": null,
+    "className": "tp-nav-link__paw",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 870
+  },
+  {
+    "index": 22,
+    "id": "tp-hem",
+    "className": "tp-header__hem",
+    "viewBox": null,
+    "ariaLabel": null,
+    "category": "header-nav",
+    "length": 399
+  },
+  {
+    "index": 23,
+    "id": null,
+    "className": "absolute -bottom-2 left-0 h-3 w-full text-toffee",
+    "viewBox": "0 0 220 24",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 312
+  },
+  {
+    "index": 24,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": "Teddy, the TeddyPups puppy, peeking over the quilt",
+    "category": "other",
+    "length": 9292
+  },
+  {
+    "index": 25,
+    "id": "tp-scallop",
+    "className": "tp-quilt__edge",
+    "viewBox": null,
+    "ariaLabel": null,
+    "category": "other",
+    "length": 564
+  },
+  {
+    "index": 26,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 27,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 28,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 29,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 30,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 31,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 32,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 33,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 34,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 35,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 36,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 37,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 38,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 39,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 40,
+    "id": null,
+    "className": "tp-door__peephole",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "door",
+    "length": 871
+  },
+  {
+    "index": 41,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 9237
+  },
+  {
+    "index": 42,
+    "id": null,
+    "className": "tp-way__skyline",
+    "viewBox": "0 0 300 120",
+    "ariaLabel": null,
+    "category": "signpost",
+    "length": 378
+  },
+  {
+    "index": 43,
+    "id": "_R_jieankivb_",
+    "className": "tp-flight__route",
+    "viewBox": "0 0 660 300",
+    "ariaLabel": "A plane bringing a Korean Teacup Maltipoo puppy from Korea to Dubai",
+    "category": "signpost",
+    "length": 1485
+  },
+  {
+    "index": 44,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "signpost",
+    "length": 9248
+  },
+  {
+    "index": 45,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 24 24",
+    "ariaLabel": null,
+    "category": "chat",
+    "length": 81
+  },
+  {
+    "index": 46,
+    "id": null,
+    "className": "tp-route",
+    "viewBox": "0 0 220 70",
+    "ariaLabel": null,
+    "category": "chat",
+    "length": 2077
+  },
+  {
+    "index": 47,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 24 24",
+    "ariaLabel": null,
+    "category": "chat",
+    "length": 95
+  },
+  {
+    "index": 48,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "chat",
+    "length": 9248
+  },
+  {
+    "index": 49,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "passport",
+    "length": 9248
+  },
+  {
+    "index": 50,
+    "id": null,
+    "className": "tp-stamp__icon",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "passport",
+    "length": 427
+  },
+  {
+    "index": 51,
+    "id": null,
+    "className": "tp-stamp__icon",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "passport",
+    "length": 427
+  },
+  {
+    "index": 52,
+    "id": null,
+    "className": "tp-stamp__icon",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "passport",
+    "length": 359
+  },
+  {
+    "index": 53,
+    "id": null,
+    "className": "tp-stamp__icon",
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "passport",
+    "length": 377
+  },
+  {
+    "index": 54,
+    "id": null,
+    "className": "tp-horizon__city",
+    "viewBox": "0 0 1440 160",
+    "ariaLabel": null,
+    "category": "celestial",
+    "length": 444
+  },
+  {
+    "index": 55,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "celestial",
+    "length": 9248
+  },
+  {
+    "index": 56,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "star",
+    "length": 284
+  },
+  {
+    "index": 57,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 282
+  },
+  {
+    "index": 58,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 59,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 60,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 61,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 299
+  },
+  {
+    "index": 62,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 282
+  },
+  {
+    "index": 63,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 298
+  },
+  {
+    "index": 64,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 65,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 66,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 285
+  },
+  {
+    "index": 67,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 9248
+  },
+  {
+    "index": 68,
+    "id": null,
+    "className": "tp-qa__star",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "star",
+    "length": 206
+  },
+  {
+    "index": 69,
+    "id": null,
+    "className": "tp-qa__star",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "star",
+    "length": 206
+  },
+  {
+    "index": 70,
+    "id": null,
+    "className": "tp-qa__star",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "star",
+    "length": 206
+  },
+  {
+    "index": 71,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 9248
+  },
+  {
+    "index": 72,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 900
+  },
+  {
+    "index": 73,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 902
+  },
+  {
+    "index": 74,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 75,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 900
+  },
+  {
+    "index": 76,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 77,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 78,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 79,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 900
+  },
+  {
+    "index": 80,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 902
+  },
+  {
+    "index": 81,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 82,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 902
+  },
+  {
+    "index": 83,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 84,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 903
+  },
+  {
+    "index": 85,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 86,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 87,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 902
+  },
+  {
+    "index": 88,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 89,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 90,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 903
+  },
+  {
+    "index": 91,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 92,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 93,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 94,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 95,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 64 64",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 904
+  },
+  {
+    "index": 96,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 9317
+  },
+  {
+    "index": 97,
+    "id": null,
+    "className": "tp-footer__hill",
+    "viewBox": "0 0 1440 80",
+    "ariaLabel": null,
+    "category": "footer",
+    "length": 196
+  },
+  {
+    "index": 98,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 99,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 284
+  },
+  {
+    "index": 100,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 298
+  },
+  {
+    "index": 101,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 282
+  },
+  {
+    "index": 102,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 298
+  },
+  {
+    "index": 103,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 298
+  },
+  {
+    "index": 104,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 285
+  },
+  {
+    "index": 105,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "other",
+    "length": 282
+  },
+  {
+    "index": 106,
+    "id": null,
+    "className": "tp-twinkle absolute text-honey",
+    "viewBox": "0 0 40 40",
+    "ariaLabel": null,
+    "category": "celestial",
+    "length": 284
+  },
+  {
+    "index": 107,
+    "id": null,
+    "className": "tp-basket__back",
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "footer",
+    "length": 300
+  },
+  {
+    "index": 108,
+    "id": null,
+    "className": null,
+    "viewBox": "0 0 300 240",
+    "ariaLabel": "Teddy, sitting snug in his basket",
+    "category": "footer",
+    "length": 9275
+  },
+  {
+    "index": 109,
+    "id": null,
+    "className": "tp-basket__front",
+    "viewBox": "0 0 300 240",
+    "ariaLabel": null,
+    "category": "footer",
+    "length": 601
+  }
+]

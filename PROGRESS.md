@@ -1,7 +1,7 @@
 # Project Progress: TeddyPups U.A.E. Clone
 
 ## Overview
-Faithful clone of [TeddyPups U.A.E.](https://puppy.instabizweb.com/), built with Next.js (App Router), TypeScript, Tailwind CSS / Vanilla CSS Variables, and smooth motion & interactive scroll effects.
+Faithful clone of [TeddyPups U.A.E.](https://puppy.instabizweb.com/) (illustrated, scroll-driven storybook with mascot Teddy, day-to-night sky progression, 3D doors, flight animation, stepper sync, and pointer interactions).
 
 ---
 
@@ -9,16 +9,17 @@ Faithful clone of [TeddyPups U.A.E.](https://puppy.instabizweb.com/), built with
 
 | Phase | Description | Status | Deliverables / Highlights |
 | :--- | :--- | :--- | :--- |
-| **Phase 0** | Reconnaissance + Data Extraction + Asset Downloads | **COMPLETED** | `RECON.md`, `data/puppies.ts`, `data/families.ts`, `data/faqs.ts`, `data/siteConfig.ts`, 109 SVGs extracted to `reference/svgs/`, 166 local assets in `/public/media/` (~75 MB) |
-| **Phase 1** | Scaffolding + Fonts + Tokens + Navigation & Layout | **COMPLETED** | Next.js 15 App Router scaffold, Fraunces/Figtree/Shantell Sans Google Fonts, CSS tokens, Fixed header (hide/show on scroll), mobile drawer menu ("where to, friend?"), bottom bar, WhatsApp widget, routing skeleton |
-| **Phase 2** | Homepage Sections (Static & Responsive) | **COMPLETED** | Hero with 6 arches + mascot, 15 doors corridor, signpost + plane path, journey stepper + phone mockup, passport booklet, happy families sunset wall, FAQs, closing CTA + basket footer |
-| **Phase 3** | Scroll Scenes & Interactive Animations | *ACTIVE* | Sky gradient daytime-to-dusk progression, horizontal treadmill door lane pinning, plane animation, stepper-phone sync, mascot walking & posing, star twinkling |
-| **Phase 4** | Subpages & Full Routing | **COMPLETED** | `/puppies` (filtered), `/puppies/[slug]`, `/happy-families`, `/how-it-works` (`#delivery`), `/faq`, `/contact`, `/gone-home`, custom 404, SEO metadata |
-| **Phase 5** | QA & Polish | **COMPLETED** | Tested in browser at 1440px desktop & 375px mobile, zero console errors, zero failed network requests |
-| **Phase 6** | Deployment & Documentation | *PENDING* | Vercel deployment, GitHub push, README, `LOOM_SCRIPT.md` |
+| **Phase A — Spec** | Recon + Tokens + Spec + SVG & Media Extraction | **COMPLETED** | `ANIMATION_SPEC.md` written with all 8 scenes & mouse interactions, `RECON.md` updated with keyframes inventory, `data/tokens.ts` created, all SVGs extracted into `/components/svg/*` (`TeddyMascot`, `CurtainRunner`, `Scallops`, `Doors`, `FlightRoute`, `PassportStamps`, `Celestial`, `Basket`, `Icons`), 166 local media files in `/public`. TypeScript compiles cleanly (`tsc --noEmit` = 0 errors). |
+| **Phase B — Systems** | Core animation systems & global layout components | *NEXT UP* | Pointer tracking hook (`usePointer`), scroll reveal observer (`useReveal`), pinned range controller, reusable `Teddy.tsx` (poses + idle blink/wag), curtain intro (`Curtain.tsx`), dynamic `data-tone` transition. |
+| **Phase C — Home Top Half** | Hero, Meet the pups (pinned treadmill corridor), Two Ways | *PENDING* | Peekaboo mascot & breed bubble cycle; pinned door corridor with 3D swinging doors & treadmill runner puppy; signpost with hinged arrow boards & animated flight route. |
+| **Phase D — Home Bottom Half** | Journey, Passport, Happy Families, FAQ Night, Closing CTA, Footer | *PENDING* | Stepper synced to WhatsApp phone simulator; 3D passport book with thumping stamps; sunset parallax & polaroid drop wall with lightbox; starry night accordion; opening house door & sleeping basket puppy. |
+| **Phase E — Inner Pages** | All dynamic subpages & SEO metadata | *PENDING* | `/puppies`, `/puppies/[slug]`, `/happy-families` (all 64 photos), `/how-it-works#delivery`, `/faq`, `/contact`, `/gone-home`, `404`, sitemap & robots. |
+| **Phase F — Polish & QA** | Visual regression diffing, accessibility & performance | *PENDING* | Cross-viewport testing (375px, 768px, 1440px), reduced-motion mode, Lighthouse performance ≥ 85, a11y ≥ 95. |
+| **Phase G — Ship** | Deployment & Documentation | *PENDING* | Vercel deploy, GitHub repo, complete README, `LOOM_SCRIPT.md`. |
 
 ---
 
 ## Commit Log
 - `init`: Repository initialized, reference HTML copied, Phase 0 recon and asset extraction completed.
-- `feat(phase-1-2-4)`: Scaffolding, all 8 scenes, subpages, responsive header/footer, mobile drawer menu, and dev server running.
+- `feat(phase-1-2-4)`: Scaffolding, all 8 scenes, subpages, responsive header/footer, mobile drawer menu, dev server running.
+- `feat(phase-a-spec)`: Completed Phase A: comprehensive `ANIMATION_SPEC.md`, tokens, and full suite of SVG components in `components/svg/*`.

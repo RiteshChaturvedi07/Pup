@@ -72,9 +72,11 @@ Exact CSS variables confirmed from `10jf32vdx50lp.css`:
   --header-h: 4.75rem; /* 4rem on mobile */
   --bar-h: calc(4rem + env(safe-area-inset-bottom));
   --gutter: clamp(1rem, 4vw, 3.5rem);
+  --door-open: 78deg;
   --ease-pounce: cubic-bezier(.34, 1.56, .64, 1);
   --ease-silk: cubic-bezier(.22, 1, .36, 1);
   --ease-snap: cubic-bezier(.7, 0, .2, 1);
+  --ease-spring: cubic-bezier(.3, 1.2, .4, 1);
 }
 ```
 
@@ -85,10 +87,10 @@ Each scene features custom `--sky-top` and `--sky-bottom` properties transitioni
 
 1. **Scene 1: Hero (`tp-hero`)**
    - *Gradient*: `#fffdf8` → `#fff1d8` (Light tone)
-   - *Components*: Scalloped curtain banner (`tp-curtain`), 6 arch windows (`tp-arch`) with puppy previews, central mascot greeting, breed pill bubbles, hero headline & CTA buttons.
+   - *Components*: Intro curtain (`tp-curtain`), 6 arch windows (`tp-arch`) with puppy previews, central mascot peekaboo greeting, breed pill bubbles, hero headline & CTA buttons.
 2. **Scene 2: Meet the Pups (`tp-meet`)**
    - *Gradient*: `#fff1d8` → `#fbe3b4` (Light tone)
-   - *Components*: Horizontal pinned treadmill door corridor (`tp-doors`, `tp-lane`), 15 puppy doors with peepholes, badges ("Available"), and a 16th "Meet them all" door leading to `/puppies`.
+   - *Components*: Horizontal pinned treadmill door corridor (`tp-doors`, `tp-lane`), 15 puppy doors with peepholes, badges ("Available"), and a 16th "Meet them all" door leading to `/puppies`. Runner puppy trots along corridor floor.
 3. **Scene 3: Two Ways (`tp-paths`)**
    - *Gradient*: `#fbe3b4` → `#f7d18d` (Light tone)
    - *Components*: Interactive wooden signpost (`tp-fork`) pointing to "Puppies in Dubai" (Downtown showroom) and "Imported for you" (flying plane route from Seoul, Korea).
@@ -100,7 +102,7 @@ Each scene features custom `--sky-top` and `--sky-bottom` properties transitioni
    - *Components*: Interactive open passport booklet (`tp-book`) with 4 stamped quality commitments (Vet-checked, Korea-to-Dubai safety, 24/7 Support, Trusted worldwide).
 6. **Scene 6: Happy Families (`tp-dusk`)**
    - *Gradient*: `#a65a30` → `#4d2b19` (Dark tone)
-   - *Components*: Warm sunset backdrop, featured client review (Sarah M., Dubai), and 8 tilted polaroids (`tp-polaroid`) taped with custom pastel washi tape.
+   - *Components*: Warm sunset backdrop, featured client review (Sarah M., Dubai), and 8 tilted polaroids (`tp-polaroid`) taped with custom pastel washi tape + photo lightbox.
 7. **Scene 7: FAQ (`tp-night`)**
    - *Gradient*: `#4d2b19` → `#2f1a10` (Dark tone)
    - *Components*: Night sky with 11 twinkling stars (`tp-twinkle`), curious mascot pondering with a "?" mark, and 3 accordion questions with plush titles.
@@ -110,38 +112,11 @@ Each scene features custom `--sky-top` and `--sky-bottom` properties transitioni
 
 ---
 
-## 6. SVG Inventory (109 Inline SVGs)
-Extracted and preserved in `reference/svgs/`:
-- **Animated Mascot (`viewBox="0 0 300 240"`, ~9.2KB each)**: Poses include sit, stand, walk, look, tilt, and peek across multiple facing directions.
-- **Doors (15 SVGs)**: Peepholes (`viewBox="0 0 64 64"`), door knobs, brass nameplates.
-- **Header & Edges**: Scalloped hem (`#tp-hem`), quilt bottom edge (`#tp-scallop`), curtain scallops (`#tp-curtain-scallop`).
-- **Icons & Badges**: 24 paw prints (`tp-nav-link__paw`), play video buttons, phone chat checkmarks, passport stamp seals.
-- **Illustrations**: Plane flight curve (`tp-flight__route`), skyline silhouette (`tp-way__skyline`), city horizon (`tp-horizon__city`), night hill (`tp-footer__hill`), wicker basket front & back (`tp-basket__front`, `tp-basket__back`).
-- **Celestial**: 11 twinkling star shapes with staggered CSS animation delays.
-
----
-
-## 7. Extracted Puppy Data (15 Slugs)
-Preserved in `/data/puppies.ts` with verified metadata and photography:
-1. `maltipoo-max-male` (Max — Maltipoo, Male, 3 mos, Local, Video)
-2. `korean-teacup-maltipoo-female` (Korean Teacup Maltipoo, Female, 2 mos, Imported, Video)
-3. `korean-teacup-poodle-female` (Korean Teacup Poodle, Female, 2 mos, Imported)
-4. `maltipoo-cavapoo-male` (Maltipoo & Cavapoo, Male, 3 mos, Local, Video)
-5. `toy-poodle-male-female` (Toy Poodle, Boy & Girl, 2 mos, Local)
-6. `maltipoo-female-2` (Maltipoo, Female, 3 mos, Local, Video)
-7. `pomeranian-female` (Pomeranian, Female, 3 mos, Local)
-8. `copper-male` (Copper — Cavapoo, Male, 2 mos, Local)
-9. `shitzu-female` (Shih Tzu, Female, 2 mos, Local)
-10. `shitzu-male` (Shih Tzu, Male, 2 mos, Local)
-11. `maltipoo-female-1` (Maltipoo, Female, 2.5 mos, Local)
-12. `maltipoo-female` (Maltipoo, Female, 2 mos, Local)
-13. `korean-teacup-pomeranian-1` (Korean Teacup Pomeranian, Female, 2 mos, Imported)
-14. `korean-teacup-pomeranian` (Korean Teacup Pomeranian, Female, 2 mos, Imported)
-15. `korean-teacup-pomeranian-male` (Korean Teacup Pomeranian, Male, 2 mos, Imported)
-
----
-
-## 8. Downloaded Assets & Media Status
-- **Location**: `/public/media/` and `/public/`
-- **Total Assets**: 166 files (~75 MB total)
-- **Coverage**: 100% of homepage and puppy catalog images, showroom puppy videos, polaroids, brand logos, apple-touch-icons, and favicons are downloaded locally. No missing or broken media assets.
+## 6. Keyframes & Animation Inventory
+46 keyframe animations extracted from production CSS including:
+- `tp-curtain-lift`, `tp-runner-x`, `tp-print-step`, `tp-runner-leg-a`, `tp-runner-leg-b`, `tp-runner-bob`, `tp-runner-wag`, `tp-runner-ear`
+- `tp-door-open`, `tp-tag-swing`, `tp-tag-nudge`
+- `tp-stamp-thump`, `tp-stamp-in`, `tp-plane-bob`
+- `tp-breathe`, `tp-blink-open`, `tp-blink-shut`, `tp-ear-twitch`
+- `tp-twinkle`, `tp-float`, `tp-sun-set`, `tp-msg-in`, `tp-house-open`
+Full animation spec detailed in `ANIMATION_SPEC.md`.

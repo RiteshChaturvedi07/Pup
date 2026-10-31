@@ -1,6 +1,14 @@
 import React from 'react';
 
-export const HeaderHem: React.FC<{ className?: string }> = ({ className = '' }) => (
+export const HeaderHem: React.FC<{
+  className?: string;
+  fill?: string;
+  stroke?: string;
+}> = ({
+  className = '',
+  fill = '#fffdf8',
+  stroke = 'rgba(42, 23, 14, 0.15)',
+}) => (
   <svg
     aria-hidden="true"
     className={`tp-header__hem ${className}`}
@@ -10,8 +18,14 @@ export const HeaderHem: React.FC<{ className?: string }> = ({ className = '' }) 
   >
     <defs>
       <pattern id="tp-hem" width="44" height="14" patternUnits="userSpaceOnUse">
-        <path d="M0 0H44V2A22 11 0 0 1 0 2Z" className="tp-header__hem-fill" />
-        <path d="M0 2A22 11 0 0 0 44 2" className="tp-header__hem-line" />
+        <path d="M0 0H44V2A22 11 0 0 1 0 2Z" fill={fill} className="tp-header__hem-fill" />
+        <path
+          d="M0 2A22 11 0 0 0 44 2"
+          fill="none"
+          stroke={stroke}
+          strokeWidth="1.5"
+          className="tp-header__hem-line"
+        />
       </pattern>
     </defs>
     <rect width="100%" height="14" fill="url(#tp-hem)" />
@@ -20,7 +34,7 @@ export const HeaderHem: React.FC<{ className?: string }> = ({ className = '' }) 
 
 export const QuiltEdge: React.FC<{ className?: string; colorVar?: string }> = ({
   className = '',
-  colorVar = 'var(--quilt)',
+  colorVar = 'var(--quilt, #fbe3b4)',
 }) => (
   <svg
     className={`tp-quilt__edge ${className}`}

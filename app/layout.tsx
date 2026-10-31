@@ -5,6 +5,9 @@ import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
 import { MobileBottomBar } from '@/components/widgets/MobileBottomBar';
 import { WhatsAppWidget } from '@/components/widgets/WhatsAppWidget';
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
+import { CursorProvider } from '@/components/providers/CursorProvider';
+import { ScrollProgressRail } from '@/components/ui/ScrollProgressRail';
 import { SITE_CONFIG } from '@/data/siteConfig';
 
 const fraunces = Fraunces({
@@ -55,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${figtree.variable} ${shantell.variable} scroll-smooth`}
+      className={`${fraunces.variable} ${figtree.variable} ${shantell.variable}`}
     >
       <body className="bg-milk font-sans text-cocoa antialiased selection:bg-honey/30">
         <a
@@ -64,11 +67,16 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <MobileBottomBar />
-        <WhatsAppWidget />
+        <SmoothScrollProvider>
+          <CursorProvider>
+            <ScrollProgressRail />
+            <Header />
+            <main id="main">{children}</main>
+            <Footer />
+            <MobileBottomBar />
+            <WhatsAppWidget />
+          </CursorProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

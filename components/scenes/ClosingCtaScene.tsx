@@ -13,7 +13,7 @@ export function ClosingCtaScene() {
       className="tp-scene tp-home py-24 relative overflow-hidden text-milk"
       style={{
         ['--sky-top' as string]: '#2f1a10',
-        ['--sky-bottom' as string]: '#24130b',
+        ['--sky-bottom' as string]: '#2A1208',
       }}
       aria-labelledby="cta-title"
     >

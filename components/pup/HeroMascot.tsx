@@ -8,6 +8,21 @@ export interface HeroMascotProps {
   onMascotClick?: () => void;
 }
 
+interface Reaction {
+  text: string;
+  eyeState: 'shut' | 'open' | 'happy';
+  tilt: number;
+  bounceY: number;
+  duration: number;
+}
+
+const REACTIONS: Reaction[] = [
+  { text: 'achoo!', eyeState: 'shut', bounceY: 4, tilt: -6, duration: 2200 },
+  { text: 'hm?', eyeState: 'open', bounceY: -6, tilt: 14, duration: 2200 },
+  { text: 'peekaboo!', eyeState: 'happy', bounceY: -14, tilt: 6, duration: 2200 },
+  { text: 'woof!', eyeState: 'happy', bounceY: -10, tilt: -4, duration: 2000 },
+];
+
 export function HeroMascot({
   activePupIndex = null,
   className = '',
@@ -16,150 +31,133 @@ export function HeroMascot({
   const containerRef = useRef<HTMLDivElement>(null);
   const [gaze, setGaze] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [headTilt, setHeadTilt] = useState<number>(0);
-  const [facing, setFacing] = useState<'left' | 'right'>('right');
   const [isBlinking, setIsBlinking] = useState<boolean>(false);
-  const [isHappy, setIsHappy] = useState<boolean>(false);
+  const [currentReaction, setCurrentReaction] = useState<Reaction | null>(null);
+  const [reactionIndex, setReactionIndex] = useState<number>(0);
   const [earWiggle, setEarWiggle] = useState<number>(0);
-  const [mascotBubble, setMascotBubble] = useState<string | null>(null);
+  const [bounceY, setBounceY] = useState<number>(0);
 
-  // Natural periodic blinking
+  // Natural periodic blinking when not reacting
   useEffect(() => {
     const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => setIsBlinking(false), 140);
-    }, 3600);
-    return () => clearInterval(blinkInterval);
-  }, []);
-
-  // When a puppy window is active (hovered or clicked), turn to look at it
-  useEffect(() => {
-    if (activePupIndex !== null && activePupIndex !== undefined) {
-      if (activePupIndex <= 2) {
-        // Puppy is on the left
-        setFacing('left');
-        setHeadTilt(-6);
-        setGaze({ x: -3.5, y: 2.2 });
-      } else {
-        // Puppy is on the right
-        setFacing('right');
-        setHeadTilt(6);
-        setGaze({ x: 3.5, y: 2.2 });
+      if (!currentReaction) {
+        setIsBlinking(true);
+        setTimeout(() => setIsBlinking(false), 140);
       }
-      setEarWiggle(4);
-      const timer = setTimeout(() => setEarWiggle(0), 400);
-      return () => clearTimeout(timer);
-    }
-  }, [activePupIndex]);
+    }, 3800);
+    return () => clearInterval(blinkInterval);
+  }, [currentReaction]);
 
-  // Pointer move tracking across the viewport / section
+  // Pointer movement tracking in ALL 360-degree directions (up, down, left, right, diagonals)
   const handlePointerMove = useCallback(
     (e: PointerEvent) => {
-      // If a puppy is explicitly active/focused, keep looking at that puppy
-      if (activePupIndex !== null && activePupIndex !== undefined) return;
-
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height * 0.45;
+      const scaleX = rect.width / 300;
+      const scaleY = rect.height / 240;
 
-      const dx = e.clientX - centerX;
-      const dy = e.clientY - centerY;
+      // Teddy's eye center in screen coordinates (X=212, Y=98 in SVG)
+      const eyeCenterX = rect.left + 212 * scaleX;
+      const eyeCenterY = rect.top + 98 * scaleY;
+
+      const dx = e.clientX - eyeCenterX;
+      const dy = e.clientY - eyeCenterY;
       const dist = Math.hypot(dx, dy) || 1;
       const angle = Math.atan2(dy, dx);
 
-      // Clamped eye offsets (up to ±3.5px)
-      const maxGaze = 3.5;
-      const eyeX = Math.cos(angle) * Math.min(maxGaze, dist / 35);
-      const eyeY = Math.sin(angle) * Math.min(maxGaze, dist / 35);
+      // Max eye pupil travel in SVG units: 6px
+      const maxTravel = 6.0;
+      const distFactor = Math.min(1, dist / 30);
+      const gazeX = Math.cos(angle) * maxTravel * distFactor;
+      const gazeY = Math.sin(angle) * maxTravel * distFactor;
 
-      // Head tilt up to ±7 degrees based on mouse X angle
-      const tilt = Math.max(-7, Math.min(7, (dx / (window.innerWidth / 2)) * 8));
+      // Subtle inquisitive head tilt following cursor angle (clamped to +/- 8 deg)
+      const targetTilt = Math.max(-8, Math.min(8, (dx / (window.innerWidth / 2)) * 10));
 
-      setGaze({ x: eyeX, y: eyeY });
-      setHeadTilt(tilt);
-
-      // Facing flips smoothly when cursor passes center
-      if (dx < -30) {
-        setFacing('left');
-      } else if (dx > 30) {
-        setFacing('right');
-      }
+      setGaze({ x: gazeX, y: gazeY });
+      setHeadTilt(targetTilt);
     },
-    [activePupIndex]
+    []
   );
 
   useEffect(() => {
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    return () => window.removeEventListener('pointermove', handlePointerMove);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+    };
   }, [handlePointerMove]);
 
-  // Interactive click on Teddy
-  const handleTeddyClick = () => {
-    setIsHappy(true);
-    setEarWiggle(8);
-    setHeadTilt(-4);
-    const messages = ['Woof! 🐾 Welcome!', 'Meet my puppy friends!', 'Click any puppy to see! ❤️'];
-    const chosen = messages[Math.floor(Math.random() * messages.length)];
-    setMascotBubble(chosen);
+  // Click on Teddy to trigger reaction & speech bubble matching the live site screenshots
+  const handleTeddyClick = (e?: React.MouseEvent | React.PointerEvent) => {
+    e?.stopPropagation();
+    const reaction = REACTIONS[reactionIndex % REACTIONS.length];
+    setReactionIndex((prev) => prev + 1);
+    setCurrentReaction(reaction);
+    setBounceY(reaction.bounceY);
+    setEarWiggle(reaction.tilt > 0 ? 9 : -9);
 
-    setTimeout(() => setEarWiggle(-6), 180);
-    setTimeout(() => {
-      setEarWiggle(0);
-      setIsHappy(false);
-    }, 450);
+    // Bounce spring animation
+    setTimeout(() => setBounceY(0), 220);
+    setTimeout(() => setEarWiggle(0), 400);
 
+    // Clear reaction after duration
     setTimeout(() => {
-      setMascotBubble(null);
-    }, 2800);
+      setCurrentReaction(null);
+    }, reaction.duration);
 
     onMascotClick?.();
   };
 
-  const isLeft = facing === 'left';
+  const effectiveTilt = currentReaction ? currentReaction.tilt : headTilt;
+  const eyeMode = currentReaction ? currentReaction.eyeState : isBlinking ? 'blink' : 'open';
 
   return (
     <div
       ref={containerRef}
-      className={`relative select-none cursor-pointer group ${className}`}
+      className={`pup-buddy relative select-none cursor-pointer group ${className}`}
       onClick={handleTeddyClick}
+      data-live="true"
       title="Click Teddy!"
-      data-facing={facing}
+      style={{
+        transform: `translateY(${bounceY}px)`,
+        transition: 'transform 0.18s cubic-bezier(.34, 1.56, .64, 1)',
+        pointerEvents: 'auto',
+      }}
     >
-      {/* Speech bubble above Teddy if triggered */}
-      {mascotBubble && (
-        <span className="mascot-bubble font-scrawl">{mascotBubble}</span>
+      {/* Speech bubble directly above Teddy matching screenshots ("achoo!", "hm?", "peekaboo!", "woof!") */}
+      {currentReaction && (
+        <span
+          className="mascot-speech-bubble font-scrawl"
+          data-show="true"
+        >
+          {currentReaction.text}
+        </span>
       )}
 
-      {/* Main SVG mascot peeking over the quilt */}
+      {/* SVG Mascot with chest, head, 360 eye tracking, and TWO FRONT LEGS AND PAWS RESTING ON QUILT */}
       <svg
         viewBox="0 0 300 240"
         role="img"
         aria-label="Teddy, the TeddyPups mascot, peeking over the quilt"
         focusable="false"
-        style={{ transformOrigin: '212px 120px' }}
-        className={`w-full h-full overflow-visible transition-transform duration-250 ease-out ${
-          isLeft ? 'scale-x-[-1]' : 'scale-x-100'
-        }`}
+        onClick={handleTeddyClick}
+        style={{
+          transformOrigin: '212px 100px',
+          pointerEvents: 'auto',
+          cursor: 'pointer',
+        }}
+        className="w-full h-auto block overflow-visible"
       >
         <g data-p="root">
-
-          {/* Front paws resting over the scalloped border */}
-          <g data-p="ledge" opacity="1">
+          {/* Chest behind collar */}
+          <g data-p="body">
             <path
-              d="M175 159 C175 148 181 142 190 142 C199 142 205 148 205 159 Z M219 159 C219 148 225 142 234 142 C243 142 249 148 249 159 Z"
+              d="M174 140 Q212 160 250 140 L250 156 Q212 166 174 156 Z"
               fill="#f2be6b"
               stroke="#2a170e"
               strokeWidth="3.4"
               strokeLinejoin="round"
               strokeLinecap="round"
-            />
-            <path
-              d="M186 153 v-4.5 M194 153 v-4.5 M230 153 v-4.5 M238 153 v-4.5"
-              stroke="#2a170e"
-              strokeWidth="2.4"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              fill="none"
             />
           </g>
 
@@ -168,7 +166,7 @@ export function HeroMascot({
             data-p="head"
             style={{
               transformOrigin: '212px 100px',
-              transform: `translate(0px, 4px) rotate(${headTilt}deg)`,
+              transform: `translate(0px, 4px) rotate(${effectiveTilt}deg)`,
               transition: 'transform 0.12s ease-out',
             }}
           >
@@ -252,7 +250,7 @@ export function HeroMascot({
             <circle cx="181" cy="116" r="7" fill="#f9b9a6" opacity="0.85" />
             <circle cx="243" cy="116" r="7" fill="#f9b9a6" opacity="0.85" />
 
-            {/* Eyes tracking pointer */}
+            {/* Eyes tracking pointer in 360 degrees */}
             <g
               data-p="eyes"
               style={{
@@ -260,9 +258,9 @@ export function HeroMascot({
                 transition: 'transform 0.08s ease-out',
               }}
             >
-              {isBlinking ? (
+              {eyeMode === 'blink' ? (
                 /* Blinking eye curve */
-                <g>
+                <g data-p="blink">
                   <path
                     d="M186.5 97 Q194 103.5 201.5 97"
                     stroke="#2a170e"
@@ -280,9 +278,9 @@ export function HeroMascot({
                     fill="none"
                   />
                 </g>
-              ) : isHappy ? (
-                /* Happy smiling eyes */
-                <g>
+              ) : eyeMode === 'happy' ? (
+                /* Happy smiling eyes (used in peekaboo! / woof!) */
+                <g data-p="happy">
                   <path
                     d="M186.5 101 Q194 91.5 201.5 101"
                     stroke="#2a170e"
@@ -300,8 +298,28 @@ export function HeroMascot({
                     fill="none"
                   />
                 </g>
+              ) : eyeMode === 'shut' ? (
+                /* Squinting sneeze eyes (used in achoo!) */
+                <g data-p="shut">
+                  <path
+                    d="M186.5 97 Q194 103.5 201.5 97"
+                    stroke="#2a170e"
+                    strokeWidth="3.4"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M222.5 97 Q230 103.5 237.5 97"
+                    stroke="#2a170e"
+                    strokeWidth="3.4"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </g>
               ) : (
-                /* Open round button eyes with shine highlights */
+                /* Open round button eyes with dual shine highlights tracking cursor */
                 <g data-p="open" opacity="1">
                   <ellipse cx="194" cy="98" rx="7.4" ry="8.6" fill="#2a170e" />
                   <ellipse cx="230" cy="98" rx="7.4" ry="8.6" fill="#2a170e" />
@@ -337,6 +355,47 @@ export function HeroMascot({
               stroke="#2a170e"
               strokeWidth="2.2"
               strokeLinejoin="round"
+            />
+          </g>
+
+          {/* TWO PROMINENT FRONT LEGS & PAWS RESTING OVER QUILT SCALLOPS (Rendered on top of head & collar) */}
+          <g data-p="legs-and-paws">
+            {/* Left front leg shaft & paw */}
+            <path
+              d="M174 142 L174 156 C174 165 179 168 189 168 C199 168 204 165 204 156 L204 142 Z"
+              fill="#f2be6b"
+              stroke="#2a170e"
+              strokeWidth="3.4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+            {/* Left paw claw notch lines */}
+            <path
+              d="M184 156 v7 M194 156 v7"
+              stroke="#2a170e"
+              strokeWidth="2.4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              fill="none"
+            />
+
+            {/* Right front leg shaft & paw */}
+            <path
+              d="M220 142 L220 156 C220 165 225 168 235 168 C245 168 250 165 250 156 L250 142 Z"
+              fill="#f2be6b"
+              stroke="#2a170e"
+              strokeWidth="3.4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+            {/* Right paw claw notch lines */}
+            <path
+              d="M230 156 v7 M240 156 v7"
+              stroke="#2a170e"
+              strokeWidth="2.4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              fill="none"
             />
           </g>
         </g>

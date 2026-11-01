@@ -111,3 +111,26 @@ export const FooterHill: React.FC<{ className?: string }> = ({ className = '' })
     <path d="M0 80V44c120-30 240-44 360-30s240 46 360 34 240-58 360-46 240 40 360 26v52z" />
   </svg>
 );
+
+export const ScallopCloudDivider: React.FC<{
+  fill: string;
+  className?: string;
+  flip?: boolean;
+}> = ({ fill, className = '', flip = false }) => (
+  <div
+    className={`w-full overflow-hidden leading-none pointer-events-none relative z-10 ${className} ${
+      flip ? 'rotate-180 -scale-x-100' : ''
+    }`}
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 1440 40"
+      preserveAspectRatio="none"
+      className="w-full h-5 sm:h-8"
+      fill={fill}
+    >
+      <path d="M0 40 Q 60 10, 120 40 T 240 40 T 360 40 T 480 40 T 600 40 T 720 40 T 840 40 T 960 40 T 1080 40 T 1200 40 T 1320 40 T 1440 40 L 1440 40 L 0 40 Z" />
+    </svg>
+  </div>
+);
+

@@ -1,0 +1,91 @@
+@keyframes tp-curtain-cover{0%{transform:translateY(calc(100% + 44px))}to{transform:translate(0)}}
+
+@keyframes tp-curtain-lift{0%{transform:translate(0)}to{transform:translateY(calc(-100% - 44px))}}
+
+@keyframes tp-curtain-rest{to{visibility:hidden}}
+
+@keyframes tp-runner-x{0%{translate:-40%}to{translate:calc(min(44rem,86vw)/1.5625)}}
+
+@keyframes tp-print-step{0%{opacity:0;scale:.4}14%{opacity:.7;scale:1.08}26%{scale:1}70%{opacity:.7}to{opacity:0}}
+
+@keyframes tp-runner-leg-a{0%{rotate:24deg}to{rotate:-22deg}}
+
+@keyframes tp-runner-leg-b{0%{rotate:-22deg}to{rotate:24deg}}
+
+@keyframes tp-runner-bob{0%{translate:0}to{translate:0 -6px}}
+
+@keyframes tp-runner-wag{0%{rotate:-16deg}to{rotate:14deg}}
+
+@keyframes tp-runner-ear{0%{rotate:0deg}to{rotate:8deg}}
+
+@keyframes tp-hold-still{0%,to{overflow-y:hidden}}
+
+@keyframes tp-menu-in{0%{clip-path:circle(0% at calc(100% - 3rem) 2rem)}to{clip-path:circle(150% at calc(100% - 3rem) 2rem)}}
+
+@keyframes tp-menu-out{0%{clip-path:circle(150% at calc(100% - 3rem) 2rem)}to{clip-path:circle(0% at calc(100% - 3rem) 2rem)}}
+
+@keyframes tp-menu-backdrop-out{to{opacity:0}}
+
+@keyframes tp-menu-link{0%{opacity:0;transform:translateY(1.2rem)rotate(-2deg)}}
+
+@keyframes tp-twinkle{0%,to{opacity:.35;transform:scale(.8)rotate(0)}50%{opacity:1;transform:scale(1.1)rotate(20deg)}}
+
+@keyframes tp-float{0%,to{transform:translateY(0)rotate(0)}50%{transform:translateY(-8px)rotate(8deg)}}
+
+@keyframes tp-stamp-thump{0%{opacity:0;transform:scale(1.25)rotate(-22deg)}60%{opacity:1;transform:scale(.94)rotate(-8deg)}to{opacity:1;transform:scale(1)rotate(-10deg)}}
+
+@keyframes tp-sun-set{0%{translate:0 -60%}to{translate:0 40%}}
+
+@keyframes tp-sunrise{0%{opacity:0;translate:-50% 16%}}
+
+@keyframes tp-peek{0%{translate:0 100%}}
+
+@keyframes tp-pop-up{0%{opacity:.6;translate:0 108%;scale:.92}65%{opacity:1;scale:1.04}to{opacity:1;translate:0;scale:1}}
+
+@keyframes tp-door-open{0%{transform:rotateY(0)}to{transform:rotateY(var(--door-open))}}
+
+@keyframes tp-msg-in{0%{opacity:0;translate:0 .8rem;scale:.92}}
+
+@keyframes tp-dot{0%,60%,to{translate:0}30%{translate:0 -.35rem}}
+
+@keyframes tp-stamp-in{0%{opacity:0;scale:1.7;rotate:calc(var(--tilt) - 16deg)}55%{opacity:.95;scale:.93}75%{scale:1.03}to{opacity:.9;scale:1;rotate:var(--tilt)}}
+
+@keyframes tp-house-open{0%{transform:rotateY(0)}to{transform:rotateY(-102deg)}}
+
+@keyframes tp-breathe{50%{scale:1 1.014}}
+
+@keyframes tp-blink-open{0%,92%,97%,to{opacity:1}94.5%{opacity:0}}
+
+@keyframes tp-blink-shut{0%,92%,97%,to{opacity:0}94.5%{opacity:1}}
+
+@keyframes tp-ear-twitch{0%,84%,to{rotate:0deg}87%{rotate:-11deg}90%{rotate:5deg}93%{rotate:-2deg}}
+
+@keyframes tp-doodle-hop{40%{rotate:12deg;scale:1.35}}
+
+@keyframes tp-print-bound{0%{opacity:0;animation-timing-function:cubic-bezier(.2,.7,.3,1);translate:0 1.6rem;scale:.9}42%{opacity:1;animation-timing-function:cubic-bezier(.5,0,.7,.4);translate:0 -.4rem;scale:.98 1.03}68%{animation-timing-function:cubic-bezier(.3,0,.3,1);translate:0;scale:1.03 .97}to{opacity:1;translate:0;scale:1}}
+
+@keyframes tp-paw-pat{0%{opacity:0;animation-timing-function:cubic-bezier(.4,0,.7,.6);transform:translateY(-1.2rem)rotate(-16deg)scale(1.15)}32%{opacity:.92;animation-timing-function:cubic-bezier(.3,0,.3,1);transform:translateY(.12rem)rotate(-6deg)scale(1.06,.88)}52%{opacity:.92;animation-timing-function:cubic-bezier(.4,0,.8,.6);transform:translateY(0)rotate(-6deg)scale(1)}to{opacity:0;transform:translateY(-1rem)rotate(6deg)scale(1.04)}}
+
+@keyframes tp-letter-fold{55%{opacity:.7;transform:perspective(1100px)rotateX(62deg)scale(.8)}to{opacity:0;transform:perspective(1100px)rotateX(80deg)scale(.35)translateY(30%)}}
+
+@keyframes tp-env-in{0%{opacity:0;scale:.4}}
+
+@keyframes tp-flap{0%{transform:scaleY(-1)}}
+
+@keyframes tp-env-post{0%{translate:-50%;scale:1}35%{translate:-50% -1.2rem;scale:.92}to{translate:-50% 12.5rem;scale:.55}}
+
+@keyframes tp-box-up{to{translate:-50%}}
+
+@keyframes tp-flag{to{rotate:0deg}}
+
+@keyframes tp-sent-in{0%{opacity:0;transform:translateY(1rem)scale(.96)}}
+
+@keyframes tp-tag-swing{0%{rotate:calc(-7deg * var(--swing,1));opacity:0}12%{opacity:1}30%{rotate:calc(4deg * var(--swing,1))}50%{rotate:calc(-2.2deg * var(--swing,1))}70%{rotate:calc(1deg * var(--swing,1))}86%{rotate:calc(-.4deg * var(--swing,1))}to{rotate:0deg}}
+
+@keyframes tp-tag-nudge{25%{rotate:calc(1.6deg * var(--swing,1))}55%{rotate:calc(-.9deg * var(--swing,1))}80%{rotate:calc(.3deg * var(--swing,1))}}
+
+@keyframes tp-poster-in{0%{opacity:0;transform:translateY(-1.5rem)rotate(3deg)}}
+
+@keyframes tp-step-in{0%{opacity:0;translate:0 1.25rem;rotate:1.5deg}}
+
+@keyframes tp-plane-bob{50%{translate:0 -6px;rotate:-3deg}}

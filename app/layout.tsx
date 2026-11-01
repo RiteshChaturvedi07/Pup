@@ -1,13 +1,16 @@
 import type { Metadata, Viewport } from 'next';
 import { Fraunces, Figtree, Shantell_Sans } from 'next/font/google';
 import './globals.css';
+import './authentic.css';
 import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
 import { MobileBottomBar } from '@/components/widgets/MobileBottomBar';
 import { WhatsAppWidget } from '@/components/widgets/WhatsAppWidget';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
-import { CursorProvider } from '@/components/providers/CursorProvider';
 import { ScrollProgressRail } from '@/components/ui/ScrollProgressRail';
+import { RouteCurtain } from '@/components/ui/RouteCurtain';
+import { PawTrailCanvas } from '@/components/ui/PawTrailCanvas';
+import { TravellingTeddy } from '@/components/mascot/TravellingTeddy';
 import { SITE_CONFIG } from '@/data/siteConfig';
 
 const fraunces = Fraunces({
@@ -67,15 +70,32 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+
+        {/* 1. Opening Route Curtain Sequence */}
+        <RouteCurtain />
+
+        {/* 2. Interactive Mouse Paw Trail Canvas */}
+        <PawTrailCanvas />
+
         <SmoothScrollProvider>
-          <CursorProvider>
-            <ScrollProgressRail />
-            <Header />
-            <main id="main">{children}</main>
-            <Footer />
-            <MobileBottomBar />
-            <WhatsAppWidget />
-          </CursorProvider>
+          {/* 3. Top Progress Rail */}
+          <ScrollProgressRail />
+
+          {/* 4. Single Continuous Travelling Mascot */}
+          <TravellingTeddy />
+
+          {/* 5. Header */}
+          <Header />
+
+          {/* 6. Main Content */}
+          <main id="main" className="relative w-full">{children}</main>
+
+          {/* 7. Footer */}
+          <Footer />
+
+          {/* 8. Widgets */}
+          <MobileBottomBar />
+          <WhatsAppWidget />
         </SmoothScrollProvider>
       </body>
     </html>

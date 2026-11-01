@@ -1,0 +1,11 @@
+.tp-route{width:100%;margin-top:.4rem;display:block}
+
+.tp-route__line{fill:none;stroke:var(--color-toffee-deep);stroke-width:2.5px;stroke-dasharray:2 7;stroke-linecap:round}
+
+.tp-route__dot{fill:var(--color-toffee-deep)}
+
+.tp-route__home{fill:var(--color-honey);stroke:var(--color-cocoa);stroke-width:2.5px;stroke-linejoin:round}
+
+.tp-route__heart{fill:var(--color-toffee-deep)}
+
+.tp-route__paw{fill:var(--color-toffee);opacity:.6}

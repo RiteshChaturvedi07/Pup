@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './authentic-scenes.css';
+
 :root {
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -73,22 +75,12 @@
 }
 
 /* Hide helper pup-stop anchors so they never show as stray dots */
-.pup-stop {
-  pointer-events: none;
-}
-.pup-stop:not([data-lane]) {
-  visibility: hidden;
-}
+.pup-stop { pointer-events: auto; }
+/* pup-stop visible */
 
 /* Custom Cursor Rules */
 @media (hover: hover) and (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button,
-  html.has-custom-cursor [role="button"] {
-    cursor: none !important;
-  }
+  /* cursor visible */
   html.has-custom-cursor input,
   html.has-custom-cursor textarea,
   html.has-custom-cursor select {
@@ -421,7 +413,7 @@
 
 .tp-hero__teddy {
   left: calc(50% - var(--tw) * .7067);
-  bottom: calc(var(--quilt-h) + 26px - var(--tw) * .2733);
+  bottom: calc(var(--quilt-h) + 30px - var(--tw) * .2733);
   width: var(--tw);
   position: absolute;
   z-index: 26;
@@ -498,7 +490,7 @@
 .tp-lineup__seat:first-child { --tag-x: -22%; }
 .tp-lineup__seat:nth-child(6) { --tag-x: -78%; }
 
-/* Speech Bubble with Name Tag */
+/* Speech Bubble with Name Tag for Puppies */
 .pup-bubble-tag {
   border: 2.5px solid var(--cocoa, #2a170e);
   background: var(--milk, #fffdf8);
@@ -530,27 +522,29 @@
   border-color: #2a170e transparent transparent transparent;
 }
 
-/* Mascot speech bubble */
-.mascot-bubble {
-  border: 2.5px solid var(--cocoa, #2a170e);
-  background: var(--milk, #fffdf8);
-  color: var(--cocoa, #2a170e);
-  white-space: nowrap;
-  border-radius: 1.2rem;
-  padding: .4rem 1rem;
-  font-size: 1.1rem;
-  font-weight: 700;
+/* Mascot speech bubble matching live site screenshots (achoo!, peekaboo!, hm?, woof!) */
+.mascot-speech-bubble {
   position: absolute;
-  bottom: 82%;
-  left: 50%;
+  bottom: calc(100% - 10px);
+  left: 70.7%;
   translate: -50% 0;
-  box-shadow: 2px 4px 0 rgba(42, 23, 14, 0.18);
+  background: #fffdf8;
+  border: 2.5px solid #2a170e;
+  color: #2a170e;
+  font-family: var(--font-shantell), "Comic Sans MS", cursive;
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  padding: 0.32rem 1.05rem 0.38rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 2px 3px 0 rgba(42, 23, 14, 0.22);
+  z-index: 60;
   pointer-events: none;
-  z-index: 40;
-  animation: tp-pop-up 0.4s var(--ease-pounce) both;
+  animation: tp-pop-up 0.25s cubic-bezier(.34, 1.56, .64, 1) both;
 }
 
-.mascot-bubble::after {
+.mascot-speech-bubble::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -560,6 +554,7 @@
   border-style: solid;
   border-color: #2a170e transparent transparent transparent;
 }
+
 
 @media (max-width: 639px) {
   .tp-hero__stage {
@@ -610,3 +605,132 @@
   }
 }
 
+/* Flight route bezier cruising animation */
+@keyframes flightCruise {
+  0% {
+    transform: translate(65px, 205px) rotate(-35deg) scale(0.9);
+  }
+  20% {
+    transform: translate(175px, 130px) rotate(-22deg) scale(1);
+  }
+  50% {
+    transform: translate(325px, 75px) rotate(0deg) scale(1.08);
+  }
+  80% {
+    transform: translate(475px, 130px) rotate(22deg) scale(1);
+  }
+  95% {
+    transform: translate(575px, 175px) rotate(30deg) scale(0.9);
+  }
+  100% {
+    transform: translate(65px, 205px) rotate(-35deg) scale(0.9);
+  }
+}
+
+@keyframes flightDash {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+.animate-flight-cruise {
+  animation: flightCruise 8s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.animate-flight-dash {
+  animation: flightDash 1.2s linear infinite;
+}
+
+/* Teacup mug puppy bobbing motion */
+@keyframes teacupBob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+
+
+
+/* ==========================================================================
+   ROUTE CURTAIN & RUNNER ANIMATIONS (ORIGINAL KEYFRAMES)
+   ========================================================================== */
+@keyframes tp-runner-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(min(32rem, 64vw)); }
+}
+
+@keyframes tp-print-step {
+  0% { opacity: 0; transform: scale(0.4); }
+  30% { opacity: 0.8; transform: scale(1.05); }
+  70% { opacity: 0.6; }
+  100% { opacity: 0.35; transform: scale(1); }
+}
+
+@keyframes tp-runner-leg-a {
+  0% { transform: rotate(24deg); }
+  100% { transform: rotate(-22deg); }
+}
+
+@keyframes tp-runner-leg-b {
+  0% { transform: rotate(-22deg); }
+  100% { transform: rotate(24deg); }
+}
+
+@keyframes tp-runner-bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3.5px); }
+}
+
+@keyframes tp-runner-wag {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+
+@keyframes tp-runner-ear {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+/* Custom Paw Cursor */
+.pup-buddy,
+.pup-buddy * {
+  cursor: url(/cursor/paw-press.svg) 9 6, pointer !important;
+}
+
+
+/* ==========================================================================
+   GLOBAL PAW CURSOR (AUTHENTIC ORIGINAL SITE CURSOR)
+   ========================================================================== */
+html, body {
+  cursor: url(/cursor/paw.svg) 9 6, auto !important;
+}
+
+:is(a, button, summary, label[for], [role=button], [role=tab], select, input[type=checkbox], input[type=radio], input[type=submit], .cursor-pointer, [tabindex="0"]) {
+  cursor: url(/cursor/paw-press.svg) 9 6, pointer !important;
+}
+
+:is(input:not([type=checkbox],[type=radio],[type=submit],[type=range]), textarea, [contenteditable=true]) {
+  cursor: text !important;
+}
+
+:is(p, h1, h2, h3, h4, li, blockquote, figcaption, dd, dt, span) {
+  cursor: inherit;
+}
+
+
+/* ==========================================================================
+   TRAVELLING MASCOT LAYER & ANCHOR RULES
+   ========================================================================== */
+/* pup-buddy visible */
+
+.pup-layer {
+  z-index: 30;
+  pointer-events: none;
+  contain: layout paint style;
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+}

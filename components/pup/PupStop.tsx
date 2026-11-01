@@ -1,7 +1,11 @@
-import React from 'react';
+'use client';
 
-export type PupPose = 'idle' | 'peek' | 'sit' | 'run' | 'walk' | 'snug' | 'bow' | 'tilt' | 'wake';
-export type PupFacing = 'left' | 'right' | 'front';
+import React from 'react';
+import { PupBuddy } from './PupBuddy';
+import { TEDDY_POSES } from './TeddyModel';
+
+export type PupPose = keyof typeof TEDDY_POSES | 'idle' | 'run' | 'wake';
+export type PupFacing = 'left' | 'right';
 
 export interface PupStopProps {
   id: string;
@@ -28,11 +32,13 @@ export const PupStop: React.FC<PupStopProps> = ({
   style,
   children,
 }) => {
+  const normalizedPose = pose === 'idle' ? 'sit' : pose === 'run' ? 'walk' : pose === 'wake' ? 'settle' : pose;
+
   return (
     <div
       id={`pup-stop-${id}`}
-      data-pup-stop={id}
-      data-pose={pose}
+      data-pup-stop="true"
+      data-pose={normalizedPose}
       data-facing={facing}
       data-act={act}
       data-behind={behind ? 'true' : undefined}
@@ -45,8 +51,15 @@ export const PupStop: React.FC<PupStopProps> = ({
       }}
       aria-hidden="true"
     >
-      {children}
+      {children || (
+        <PupBuddy
+          pose={normalizedPose}
+          facing={facing}
+          act={act}
+          size={160}
+          label={`Teddy in ${id}`}
+        />
+      )}
     </div>
   );
 };
-export default PupStop;

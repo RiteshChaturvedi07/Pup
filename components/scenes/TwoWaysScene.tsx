@@ -1,165 +1,232 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { PupStop } from '@/components/pup/PupStop';
+import { PupBuddy } from '@/components/pup/PupBuddy';
+
+// Cubic Bezier curve calculation: M40 250 C 170 40, 470 20, 620 168
+function getBezierFlightCoords(t: number) {
+  const u = 1 - t;
+  const tt = t * t;
+  const uu = u * u;
+  const uuu = uu * u;
+  const ttt = tt * t;
+
+  // Bezier coordinates
+  const x = uuu * 40 + 3 * uu * t * 170 + 3 * u * tt * 470 + ttt * 620;
+  const y = uuu * 250 + 3 * uu * t * 40 + 3 * u * tt * 20 + ttt * 168;
+
+  // Tangent derivative for flight pitch angle
+  const dx = 3 * uu * (170 - 40) + 6 * u * t * (470 - 170) + 3 * tt * (620 - 470);
+  const dy = 3 * uu * (40 - 250) + 6 * u * t * (20 - 40) + 3 * tt * (168 - 20);
+
+  const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+  return { x, y, angle };
+}
 
 export function TwoWaysScene() {
+  const planeRef = useRef<SVGGElement>(null);
+
+  // 60fps Airplane Flight Animation along the dotted curve (direct DOM transform)
+  useEffect(() => {
+    let animId: number;
+    let startTime: number | null = null;
+    const durationMs = 5500; // 5.5s flight cycle
+
+    const animateFlight = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      // Flight cycle progress
+      const p = (elapsed % durationMs) / durationMs;
+      // Travel phase: 0 -> 0.85; Pause at Dubai: 0.85 -> 1.0
+      const travelT = p < 0.85 ? p / 0.85 : 1;
+      // Fade out on landing, fade in on takeoff
+      const opacity = p > 0.88 ? Math.max(0, 1 - (p - 0.88) / 0.09) : p < 0.08 ? p / 0.08 : 1;
+
+      // Soft easing along bezier
+      const easedT = travelT < 0.5 ? 2 * travelT * travelT : 1 - Math.pow(-2 * travelT + 2, 2) / 2;
+      const { x, y, angle } = getBezierFlightCoords(easedT);
+      const bobY = Math.sin((elapsed / 260) * Math.PI) * 3;
+
+      if (planeRef.current) {
+        planeRef.current.setAttribute(
+          'transform',
+          `translate(${x.toFixed(1)} ${(y + bobY).toFixed(1)}) rotate(${angle.toFixed(1)})`
+        );
+        planeRef.current.style.opacity = opacity.toFixed(3);
+      }
+
+      animId = requestAnimationFrame(animateFlight);
+    };
+
+    animId = requestAnimationFrame(animateFlight);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
   return (
     <section
       data-pup-scene="true"
       data-tone="light"
-      className="tp-scene tp-paths py-24 relative overflow-hidden"
+      className="tp-scene tp-paths"
       style={{
         ['--sky-top' as string]: '#fbe3b4',
         ['--sky-bottom' as string]: '#f7d18d',
       }}
       aria-labelledby="paths-title"
     >
-      <div className="gutter mx-auto max-w-7xl">
+      <div className="gutter mx-auto max-w-[110rem]">
         {/* Title */}
-        <div className="text-center max-w-2xl mx-auto mb-16 relative">
-          <span className="font-scrawl text-toffee text-lg font-medium block mb-1">
-            choose your path 🌿
-          </span>
-          <div className="relative inline-block">
-            <h2
-              id="paths-title"
-              className="font-plush text-huge font-bold text-cocoa"
-            >
-              Two ways to meet your puppy
-            </h2>
-            <PupStop
-              id="paths"
-              pose="sit"
-              facing="right"
-              className="tp-paths__teddy absolute -bottom-3 -left-6"
-            />
-          </div>
-          <p className="mt-3 text-cocoa/80 text-base md:text-lg">
-            Whether you want to visit our Downtown Dubai showroom today or reserve a rare teacup puppy from Korea, we guide you every step.
-          </p>
-        </div>
+        <h2 id="paths-title" className="tp-paths__title font-plush text-huge text-center">
+          Two ways to meet your puppy
+        </h2>
 
-        {/* 2 Ways Cards with Central Fork Anchor */}
-        <div className="relative">
-          <div className="flex justify-center -mb-6 relative z-10">
-            <PupStop
-              id="fork"
-              pose="sit"
-              facing="right"
-              act="signpost"
-              className="tp-fork__teddy"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-          {/* Way 1: Local Dubai Showroom */}
-          <div className="relative flex flex-col justify-between rounded-3xl border-3 border-cocoa bg-milk/90 p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-honey/40 px-3.5 py-1 text-xs font-bold text-cocoa mb-4">
-                <span>📍</span>
-                <span>Downtown Dubai</span>
-              </div>
-              <h3 className="font-plush text-2xl sm:text-3xl font-bold text-cocoa">
-                Puppies in Dubai
-              </h3>
-              <p className="font-scrawl text-sm text-toffee mt-1 font-semibold">
-                In our showroom
-              </p>
-              <p className="mt-4 text-cocoa/80 leading-relaxed text-sm sm:text-base">
-                See them, love them, take them home. Come meet our locally available puppies before you decide. Spend quiet bonding time in a stress-free setting.
-              </p>
+        {/* 2 Ways Fork */}
+        <div className="tp-fork">
+          {/* Central Wooden Signpost Mast */}
+          <div aria-hidden="true" className="tp-fork__post" />
 
-              {/* Visual preview */}
-              <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-cocoa/20">
-                <Image
-                  src="/media/27b888_323008bb0f6a41d4bde2a0da7206cd98f000.jpeg"
-                  alt="A tiny apricot teddy bear puppy held up in the TeddyPups showroom"
-                  fill
-                  sizes="(min-width: 768px) 45vw, 90vw"
-                  className="object-cover"
+          {/* LEFT WAY: Puppies in Dubai */}
+          <article className="tp-way tp-way--left" aria-labelledby="way-local">
+            <h3 id="way-local" className="tp-sign tp-sign--left font-plush">
+              Puppies in Dubai
+            </h3>
+
+            <div className="tp-way__scene">
+              {/* Dubai Skyline Silhouette */}
+              <svg viewBox="0 0 300 120" className="tp-way__skyline" aria-hidden="true">
+                <path
+                  d="M4 116h292M20 116V78h16v38M44 116V60h18v56M70 116V84h12v32M150 116V36l4-6v-14l3-4 3 4v14l4 6v80M118 116V70l12-8v54M174 116V64l14 8v44M200 116V82h18v34M226 116V56h14v60M248 116V88h22v28"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <div className="absolute top-3 right-3 rounded-full bg-milk/90 px-3 py-1 text-xs font-bold text-cocoa shadow-sm">
-                  Ready today
-                </div>
-              </div>
-            </div>
+              </svg>
 
-            <div className="mt-8 pt-4">
-              <Link
-                href="/puppies?origin=local"
-                className="inline-flex w-full h-12 items-center justify-center gap-2 rounded-full bg-cocoa font-semibold text-milk shadow-md transition-all hover:bg-cocoa-soft active:scale-95"
-              >
-                <span>Meet local puppies</span>
-                <span>→</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Way 2: Imported from Korea */}
-          <div className="relative flex flex-col justify-between rounded-3xl border-3 border-cocoa bg-milk/90 p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-sky/50 px-3.5 py-1 text-xs font-bold text-sky-deep mb-4">
-                <span>✈️</span>
-                <span>Direct from Seoul</span>
-              </div>
-              <h3 className="font-plush text-2xl sm:text-3xl font-bold text-cocoa">
-                Imported for you
-              </h3>
-              <p className="font-scrawl text-sm text-toffee mt-1 font-semibold">
-                Exclusive Korean teacup puppies
-              </p>
-              <p className="mt-4 text-cocoa/80 leading-relaxed text-sm sm:text-base">
-                Exclusive Korean teacup puppies, delivered. Order from the world&apos;s most reputable breeders and let us handle the import, permits, and climate-controlled flight.
-              </p>
-
-              {/* Visual preview with plane route illustration */}
-              <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-2xl border-2 border-cocoa/20 bg-[#f9f3ea] p-4 flex flex-col justify-between">
-                {/* Flight Route curve */}
-                <svg viewBox="0 0 660 300" className="w-full h-full text-toffee" fill="none">
-                  {/* Dotted flight line */}
-                  <path
-                    d="M 50 220 Q 330 30 590 180"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeDasharray="10 8"
+              {/* Showroom Window Frame */}
+              <figure className="tp-window">
+                <span className="tp-window__glass">
+                  <img
+                    src="/media/27b888_323008bb0f6a41d4bde2a0da7206cd98f000.jpeg"
+                    alt="A tiny apricot teddy bear puppy held up in the TeddyPups showroom"
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: '54.3% 48.3%' }}
                   />
-                  {/* Seoul Origin Point */}
-                  <circle cx="50" cy="220" r="10" fill="#2a170e" />
-                  <circle cx="50" cy="220" r="4" fill="#f2be6b" />
-                  <text x="30" y="260" fill="#2a170e" className="font-plush text-lg font-bold">Seoul, KR</text>
+                </span>
+                <figcaption className="font-scrawl">In our showroom</figcaption>
+              </figure>
+            </div>
 
-                  {/* Dubai Destination Point */}
-                  <circle cx="590" cy="180" r="10" fill="#2a170e" />
-                  <circle cx="590" cy="180" r="4" fill="#f2be6b" />
-                  <text x="540" y="225" fill="#2a170e" className="font-plush text-lg font-bold">Dubai, UAE</text>
+            <p className="tp-way__text">
+              See them, love them, take them home. Come meet our locally available puppies before you decide.
+            </p>
 
-                  {/* Cute Flying Plane icon */}
-                  <g transform="translate(320, 95) rotate(-10)">
-                    <text x="0" y="0" className="text-3xl">✈️</text>
+            <Link className="btn btn-primary" href="/puppies?origin=local">
+              Meet local puppies
+            </Link>
+          </article>
+
+          {/* RIGHT WAY: Imported for You */}
+          <article className="tp-way tp-way--right" aria-labelledby="way-imported">
+            <h3 id="way-imported" className="tp-sign tp-sign--right font-plush">
+              Imported for you
+            </h3>
+
+            <div className="tp-way__scene">
+              <div className="tp-flight">
+                <svg
+                  viewBox="0 0 660 300"
+                  role="img"
+                  aria-label="A plane bringing a Korean Teacup puppy from Korea to Dubai"
+                >
+                  <defs>
+                    <clipPath id="tp_porthole_clip">
+                      <circle cx="0" cy="0" r="25" />
+                    </clipPath>
+                  </defs>
+
+                  {/* Dotted curved flight trajectory */}
+                  <path
+                    d="M40 250 C 170 40, 470 20, 620 168"
+                    className="tp-flight__route"
+                  />
+
+                  {/* Korea Origin Dot & Label */}
+                  <circle cx="40" cy="250" r="7" className="tp-flight__dot" />
+                  <text x="40" y="284" textAnchor="middle" className="tp-flight__label">
+                    Korea
+                  </text>
+
+                  {/* Dubai Destination Dot & Label */}
+                  <circle cx="620" cy="168" r="7" className="tp-flight__dot" />
+                  <text x="620" y="202" textAnchor="middle" className="tp-flight__label">
+                    Dubai
+                  </text>
+
+                  {/* The Cartoon Flying Airplane Cruising along the Bezier Path */}
+                  <g ref={planeRef} transform="translate(620.0 168.0) rotate(44.5)" style={{ opacity: 1 }}>
+                    <g transform="translate(-126 -78)">
+                      {/* Tail wing */}
+                      <path d="M28 60 L8 26 L34 26 L60 54 Z" className="tp-flight__wing" />
+                      {/* Far Wing */}
+                      <path d="M108 112 L142 156 L172 156 L158 112 Z" className="tp-flight__wing tp-flight__wing--far" />
+                      {/* Airplane Fuselage */}
+                      <path
+                        d="M20 80 C20 52 52 44 80 44 L168 44 C200 44 224 60 232 80 C224 100 200 112 168 112 L80 112 C52 112 20 104 20 80 Z"
+                        className="tp-flight__body"
+                      />
+                      {/* Near Wing */}
+                      <path d="M104 44 L138 2 L168 2 L154 44 Z" className="tp-flight__wing" />
+                      {/* Nose cockpit visor line */}
+                      <path d="M206 64 C215 67 221 73 224 80" className="tp-flight__line" />
+                    </g>
+
+                    {/* Cabin Porthole with puppy looking through */}
+                    <g transform="translate(10 2)">
+                      <image
+                        href="/media/b942a5_50f0ae67c9ff437d911597d52a9e63b3-mv2.jpeg"
+                        x="-25"
+                        y="-25"
+                        width="50"
+                        height="50"
+                        clipPath="url(#tp_porthole_clip)"
+                        preserveAspectRatio="xMidYMid slice"
+                      />
+                      <circle r="25" className="tp-flight__porthole" />
+                    </g>
                   </g>
                 </svg>
-
-                <div className="absolute top-3 right-3 rounded-full bg-milk/90 px-3 py-1 text-xs font-bold text-cocoa shadow-sm">
-                  VIP Travel Care
-                </div>
               </div>
             </div>
 
-            <div className="mt-8 pt-4">
-              <Link
-                href="/puppies?origin=imported"
-                className="inline-flex w-full h-12 items-center justify-center gap-2 rounded-full bg-toffee font-semibold text-milk shadow-md transition-all hover:bg-toffee-deep active:scale-95"
-              >
-                <span>See imported puppies</span>
-                <span>→</span>
-              </Link>
-            </div>
+            <p className="tp-way__text">
+              Exclusive Korean teacup puppies, delivered. Order from the world&apos;s most reputable breeders and let us handle the import.
+            </p>
+
+            <Link className="btn btn-primary" href="/puppies?origin=imported">
+              See imported puppies
+            </Link>
+          </article>
+
+          {/* Central Teddy sitting at the Signpost */}
+          <div
+            data-pup-stop="true"
+            data-pose="sit"
+            data-facing="right"
+            className="pup-stop tp-fork__teddy"
+          >
+            <PupBuddy
+              pose="sit"
+              facing="right"
+              size={195}
+              label="Teddy sitting by the directional signpost"
+            />
           </div>
         </div>
       </div>
-    </div>
     </section>
   );
 }

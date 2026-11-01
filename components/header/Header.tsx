@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -15,23 +15,25 @@ export function Header() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDarkTone, setIsDarkTone] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const lastY = lastScrollYRef.current;
 
-      // Scrolled state
-      setScrolled(currentScrollY > 20);
+      // Scrolled state: guarded to prevent unnecessary renders
+      const isScrolled = currentScrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
 
       // Hide header when scrolling down, show when scrolling up
-      if (currentScrollY > 140 && currentScrollY > lastScrollY) {
-        setHidden(true);
-      } else {
-        setHidden(false);
+      let shouldHide = false;
+      if (currentScrollY > 140 && currentScrollY > lastY) {
+        shouldHide = true;
       }
+      setHidden((prev) => (prev !== shouldHide ? shouldHide : prev));
 
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
 
       // Tone detection based on elements under header
       const headerEl = document.querySelector('header');
@@ -41,14 +43,15 @@ export function Header() {
         const elementUnder = document.elementFromPoint(window.innerWidth / 2, probeY);
         const scene = elementUnder?.closest('[data-pup-scene], [data-tone]');
         const tone = scene?.getAttribute('data-tone');
-        setIsDarkTone(tone === 'dark');
+        const dark = tone === 'dark';
+        setIsDarkTone((prev) => (prev !== dark ? dark : prev));
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const textColorClass = isDarkTone ? 'text-[#fff1d8]' : 'text-[#2a170e]';
   const subTextColorClass = isDarkTone ? 'text-[#fbe3b4]' : 'text-[#a24a1a]';
@@ -101,13 +104,14 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation matching Reference */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main Navigation">
-            <NavLink href="/puppies" label="Available puppies" isDark={isDarkTone} active={pathname === '/puppies'} />
+            <NavLink href="/" label="Home" isDark={isDarkTone} active={pathname === '/'} />
+            <NavLink href="/puppies" label="Puppies" isDark={isDarkTone} active={pathname === '/puppies'} />
             <NavLink href="/happy-families" label="Happy families" isDark={isDarkTone} active={pathname === '/happy-families'} />
             <NavLink href="/how-it-works" label="How it works" isDark={isDarkTone} active={pathname === '/how-it-works'} />
             <NavLink href="/faq" label="FAQ" isDark={isDarkTone} active={pathname === '/faq'} />
-            <NavLink href="/contact" label="Contact" isDark={isDarkTone} active={pathname === '/contact'} />
+            <NavLink href="/contact" label="Visit & contact" isDark={isDarkTone} active={pathname === '/contact'} />
           </nav>
 
           {/* Right Action & Mobile Toggle */}
@@ -116,11 +120,11 @@ export function Header() {
               href={SITE_CONFIG.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative group hidden sm:inline-flex h-11 items-center gap-2 rounded-full bg-[#1f7a4d] px-5 font-bold text-white shadow-md transition-all hover:translate-y-[-2px] hover:shadow-lg active:translate-y-[1px]"
+              className="relative group hidden sm:inline-flex h-11 items-center gap-2 rounded-full bg-[#1f7a4d] px-6 font-bold text-white shadow-md transition-all hover:translate-y-[-2px] hover:shadow-lg active:translate-y-[1px]"
             >
               {/* Attention Pulse Ring */}
               <span className="absolute -inset-1 rounded-full border-2 border-[#1f7a4d] opacity-50 group-hover:hidden animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]" />
-              <span className="relative z-10">Enquire on WhatsApp</span>
+              <span className="relative z-10">WhatsApp us</span>
               <svg className="relative z-10 size-4 text-[#f2be6b]" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.311.045-.698.058-1.996-.481-1.66-.689-2.73-2.386-2.812-2.496-.083-.11-1.077-1.434-1.077-2.736 0-1.302.68-1.944.92-2.208.24-.264.524-.33.699-.33.175 0 .349.002.5.011.16.009.375-.06.586.447.218.524.743 1.815.808 1.947.066.131.11.285.022.46-.087.175-.131.284-.262.437-.131.153-.276.342-.394.459-.131.131-.268.274-.115.537.153.262.68 1.121 1.458 1.814 1.002.894 1.847 1.171 2.109 1.302.262.131.415.11.568-.066.153-.175.655-.765.83-.1.027.175.24.371.743.633 1.246.503.262.11.393.175.459.284.065.11.065.633-.079 1.038z" />
               </svg>
